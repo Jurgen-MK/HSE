@@ -1,0 +1,20 @@
+server:
+  port: 9000
+
+security:
+  jwt:
+    key-store: classpath:mykeystore.jks
+    key-store-password: qweqwe
+    key-pair-alias: servercert
+    key-pair-password: qweqwe
+
+spring:
+  datasource:
+    platform: mssql
+    url: jdbc:sqlserver://10.64.1.72\\MSSQLSERVER:1433;databaseName=HSEKTZH;schema=dbo
+    username: sa
+    password: qq*12345678
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true

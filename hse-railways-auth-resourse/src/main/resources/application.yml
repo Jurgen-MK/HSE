@@ -1,0 +1,20 @@
+server:
+  port: 9100  
+
+security:
+  jwt:
+    public-key: classpath:public.txt
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: mssql
+    url: jdbc:sqlserver://10.64.1.72\\MSSQLSERVER:1433;databaseName=HSEKTZH;schema=dbo
+    username: sa
+    password: qq*12345678
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true

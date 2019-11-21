@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Calling an API</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- <script src="/templates/hello.js"></script> -->
+	<!-- <script type="text/javascript">
+		$(document).ready(function() {
+		    $.ajax({
+		        url: "http://localhost:9100/me/all"
+		    }).then(function(data) {
+		       $('.greeting-id').append(data[0].id);
+		       $('.greeting-content').append(data[0].username);
+		    });
+		});
+	</script> -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			type : 'POST',
+			url : "http://localhost:9000/oauth/token?grant_type=password&username=user&password=pass",
+			/* data: { grant_type: "password", username : "user", password : "pass"} , */
+			dataType : 'json',
+			/* headers: {
+		        'Authorization': 'Basic Y2xpZW50SWQ6c2VjcmV0',
+		    }, */
+			beforeSend: function (xhr) {
+		        xhr.setRequestHeader("Authorization", "Basic Y2xpZW50SWQ6c2VjcmV0");
+		    },
+			success : function(data) {
+				console.log(data[0]);
+
+				$('.greeting-id').append(data[0].id);
+				$('.greeting-content').append(data[0].username);
+				alert('id: ' + data[0].id + ', uname: ' + data[0].username);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert(jqXHR.status + ' ' + jqXHR.responseText);
+			}
+		})
+	});
+</script>
+</head>
+<body>
+	<div>
+		<p class="greeting-id">The ID is </p>
+		<p class="greeting-content">The content is </p>
+	</div>
+</body>
+</html>
