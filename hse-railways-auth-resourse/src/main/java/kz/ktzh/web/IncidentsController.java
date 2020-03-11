@@ -2,6 +2,7 @@ package kz.ktzh.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,36 +31,38 @@ public class IncidentsController {
 	@Autowired
 	IncidentService incServ;
 
+	//Принимает инциденты 
 	@PostMapping(value = "/sendinc", consumes = { "application/json", "multipart/form-data" }, produces = "text/plain")
 	public String createRecord(@RequestPart("incds") Incidents incds, @RequestPart("mpfile") MultipartFile mpfile) {
 		if (incServ.insertIncident(incds, mpfile)) {
-			return "Малява пришла";
+			return "1";
 		} else {
-			return "Что-то пошло не так";
+			return "0";
 		}
 
 	}
 
+	//Получение всего списка инцидентов
 	@PostMapping(value = "/viewall")
 	public ResponseEntity<Iterable<Incidents>> getAllInc() {
 		return ResponseEntity.ok(incServ.listAllInc());
 	}
-
+	
+	//Получение списка инцидентов по пользователю
 	@PostMapping(value = "/viewbyid")
-	public ResponseEntity<Iterable<Incidents>> getIncById(@RequestParam Integer userid) {
+	public ResponseEntity<List<Incidents>> getIncById(@RequestParam Integer userid) {
 		return ResponseEntity.ok(incServ.listIncById(userid));
 	}
-
+	
+	//Получение прикрепленной к инциденту картинки
 	@GetMapping("/image/**")
 	public HttpEntity<byte[]> getPhoto(HttpServletRequest request) throws IOException {
 		String basepath = "C:\\HSEKTZH\\";
-		// C:\HSEKTZH\UID1\2019\09\11\
-		System.out.println("ПЕРВЫЙ ПАШЙОЛ");
+		// C:\HSEKTZH\UID1\2019\09\11\		
 		String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
 		String bestMatchPattern = (String) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
 		basepath = basepath + new AntPathMatcher().extractPathWithinPattern(bestMatchPattern, path);
-		basepath.replace("/", "\\");
-		System.out.println("БЕЙЗПАЧ - " + basepath);
+		basepath.replace("/", "\\");		
 		byte[] image = org.apache.commons.io.FileUtils.readFileToByteArray(new File(basepath));
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.IMAGE_PNG);

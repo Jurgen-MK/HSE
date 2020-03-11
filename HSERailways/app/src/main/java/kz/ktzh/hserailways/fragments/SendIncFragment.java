@@ -139,7 +139,7 @@ public class SendIncFragment extends Fragment {
                                 @Override
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                     try {
-                                        Toast.makeText(getActivity(), "Инцидент отправлен успешно! " + response.body().string(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), response.body().string() + ": Инцидент отправлен! ", Toast.LENGTH_SHORT).show();
                                         imageView.setImageResource(0);
                                         edtIncDiscription.getText().clear();
                                     } catch (IOException e) {

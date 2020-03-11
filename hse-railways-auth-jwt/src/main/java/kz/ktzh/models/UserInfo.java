@@ -7,12 +7,12 @@ import javax.persistence.Id;
 public class UserInfo {
 
 	@Id
-	int id;
-	String username;
-	String fullname;
-	String phone;
-	String email;
-	String position;
+	private int id;
+	private String username;
+	private String fullname;
+	private String phone;
+	private String email;
+	private String position;
 
 	protected UserInfo() {
 	}

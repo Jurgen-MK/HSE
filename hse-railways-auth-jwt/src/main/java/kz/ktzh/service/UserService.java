@@ -1,7 +1,5 @@
 package kz.ktzh.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,9 +34,8 @@ public class UserService {
 				user.setPassword(passwordEnc.encode(user.getPassword()));
 				System.out.println("bcrypt - " + user.getPassword());
 				userRepo.save(user);
-				userRoleRepo.save(new Authorities(user.getUsername(), ROLE));
-				List<Users> tempuser = userRepo.findByUsername(user.getUsername());
-				userInfo.setId(tempuser.get(0).getId());
+				userRoleRepo.save(new Authorities(user.getUsername(), ROLE));				
+				userInfo.setId(user.getId());
 				userInfoRepo.save(userInfo);
 			} catch (Exception e) {
 				e.printStackTrace();

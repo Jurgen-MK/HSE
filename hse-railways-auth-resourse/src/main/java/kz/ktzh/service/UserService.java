@@ -26,9 +26,9 @@ public class UserService {
 		userInfoRepo.save(userInfo);
 		} catch(Exception e) {
 			e.printStackTrace();
-			return "Не удалось обновить данные";
+			return "0";
 		}
-		return "Данные обновленны";
+		return "1";
 	}
 	
 }

@@ -15,14 +15,14 @@ public class Incidents {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer inc_id;
+	private Integer inc_id;
 	@Column(name = "user_id")
-	Integer userid;
+	private Integer userid;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	Date dated;
-	String discription;
-	Integer content_type;
-	String content_path;
+	private Date dated;
+	private String discription;
+	private Integer content_type;
+	private String content_path;
 
 	protected Incidents() {
 	}

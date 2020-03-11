@@ -7,8 +7,8 @@ import javax.persistence.Id;
 public class Authorities {
 
 	@Id
-	String username;
-	String authority;
+	private String username;
+	private String authority;
 
 	protected Authorities() {
 	}

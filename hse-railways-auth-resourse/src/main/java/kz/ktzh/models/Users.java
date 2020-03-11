@@ -10,10 +10,10 @@ public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	String username;
-	String password;
-	byte enabled;
+	private int id;
+	private String username;
+	private String password;
+	private byte enabled;
 
 	protected Users() {
 	}
