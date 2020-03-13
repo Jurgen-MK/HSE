@@ -7,6 +7,7 @@ import kz.ktzh.hserailways.entity.UserCreationRequest;
 import kz.ktzh.hserailways.entity.UserInfo;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -28,6 +29,9 @@ public interface HSEApi {
     @Multipart
     @POST("/incidents/sendinc")
     public Call<ResponseBody> addInc(@Header("Authorization") String token, @Part MultipartBody.Part file, @Part("incds") RequestBody incds);
+
+    @POST("/incidents/remove")
+    public Call<ResponseBody> removeInc(@Header("Authorization") String token, @Query("incid") int incid);
 
     @POST("/user/userinfo")
     public Call<UserInfo> getUserInfo(@Header("Authorization") String token, @Query("username") String username);

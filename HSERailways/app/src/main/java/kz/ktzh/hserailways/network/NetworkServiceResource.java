@@ -2,6 +2,8 @@ package kz.ktzh.hserailways.network;
 
 import kz.ktzh.hserailways.controller.HSEApi;
 import kz.ktzh.hserailways.entity.UserInfo;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -16,10 +18,16 @@ public class NetworkServiceResource {
     private UserInfo userInfo;
 
     private NetworkServiceResource() {
+       /* HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor);*/
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
+                //.client(client.build())
                 .build();
     }
 

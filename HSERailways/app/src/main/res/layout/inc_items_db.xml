@@ -10,12 +10,12 @@
             type="kz.ktzh.hserailways.entity.Incidents" />
     </data>
 
-    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="5dp"
+        bind:cardCornerRadius="3dp"
+        bind:cardElevation="5dp"
         >
 
         <LinearLayout
@@ -24,15 +24,31 @@
             android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/textView4"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0.2"
-                android:background="@drawable/border"
-                android:gravity="center"
-                android:text="@{incidents.dated}"
-                android:textColor="#000000" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/border"
+                    android:gravity="center"
+                    android:text="@{incidents.dated}"
+                    android:textColor="#000000" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/border"
+                    bind:srcCompat="@drawable/ic_delete_black_24dp"></ImageButton>
+
+            </LinearLayout>
 
 
             <ImageView

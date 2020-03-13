@@ -54,6 +54,15 @@ public class IncidentsController {
 		return ResponseEntity.ok(incServ.listIncById(userid));
 	}
 	
+	@PostMapping(value = "/remove")
+	public String removeRecord(@RequestParam Integer incid) {
+		if (incServ.removeIncident(incid)){
+			return "1";
+		} else {
+			return "0";
+		}
+	}
+	
 	//Получение прикрепленной к инциденту картинки
 	@GetMapping("/image/**")
 	public HttpEntity<byte[]> getPhoto(HttpServletRequest request) throws IOException {

@@ -47,6 +47,7 @@ public class MyIncFragment extends Fragment {
     private String accessToken;
     List<Incidents> glistInc;
     private FragmentMyIncBinding binding;
+    int index = 0;
 
     private OnFragmentInteractionListener mListener;
 
@@ -94,6 +95,8 @@ public class MyIncFragment extends Fragment {
         setupRecyclerView();
         return binding.getRoot();
     }
+
+
 
 
     private void setupRecyclerView() {
