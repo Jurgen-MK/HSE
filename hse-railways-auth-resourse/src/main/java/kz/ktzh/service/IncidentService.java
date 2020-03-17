@@ -31,13 +31,11 @@ public class IncidentService {
 					.append(dt.toString().substring(0, 4)).append("\\").append(dt.toString().substring(5, 7))
 					.append("\\").append(dt.toString().substring(8, 10)).append("\\").toString();			
 			File file = new File(mpfile.getOriginalFilename());
-			String simpleFileName = file.getName();
-			//String destination = basePath + pathDocs + dt.getTime() + simpleFileName;
+			String simpleFileName = file.getName();			
 			String destination = new StringBuilder().append(basePath).append(pathDocs).append(dt.getTime()).append(simpleFileName).toString();
 			if (new File(basePath + pathDocs).mkdirs()) {
 				System.out.println("path created");
-			}
-			//incds.setContent_path(pathDocs.replace("\\", "/") + dt.getTime() + simpleFileName);
+			}			
 			incds.setContent_path(new StringBuilder().append(pathDocs.replace("\\", "/")).append(dt.getTime()).append(simpleFileName).toString());
 			file = new File(destination);
 			mpfile.transferTo(file);
